@@ -30,6 +30,7 @@ def alumno():
 	if request.method == 'POST':
 		alumn = Alumnos(nombre = create_form.nombre.data,
 				  apellidos = create_form.apellidos.data,
+				  telefono = create_form.telefono.data,
 				  email = create_form.email.data)
 		db.session.add(alumn)
 		db.session.commit()
