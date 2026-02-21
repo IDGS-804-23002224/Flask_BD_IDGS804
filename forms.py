@@ -14,7 +14,7 @@ class UserForm(Form):
     apaterno = StringField("apaterno", [
         validators.DataRequired(message="El apellido es requerido")
     ])
-    correo = EmailField("correo", [
+    email = EmailField("email", [
         validators.DataRequired(message='El apellido es requerido'),
         validators.Email(message="Ingresa un correo válido")
     ])
