@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<div class="max-w-md mx-auto mt-8">
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+        <span class="font-medium">¡Atención!</span> Estás a punto de eliminar este curso. Las inscripciones de los
+        alumnos a este curso también podrían verse afectadas.
+    </div>
+
+    <h2 class="text-2xl font-semibold text-heading mb-6 text-center">Confirmar Eliminación</h2>
+    <form method="POST" novalidate>
+        {{ form.csrf_token }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+        <fieldset disabled>
+            <div class="relative z-0 w-full mb-5 group opacity-70">
+                {{macros.camposNuevos(form.nombre, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent
+                border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0")}}
+            </div>
+
+            <div class="relative z-0 w-full mb-5 group opacity-70">
+                {{macros.camposNuevos(form.descripcion, class="block py-2.5 px-0 w-full text-sm text-heading
+                bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none
+                focus:ring-0")}}
+            </div>
+
+            <div class="relative z-0 w-full mb-8 group opacity-70">
+                <label class="text-sm text-body mb-2 block">Maestro Asignado:</label>
+                {{macros.camposNuevos(form.maestro_matricula, class="block py-2.5 px-0 w-full text-sm text-heading
+                bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none
+                focus:ring-0")}}
+            </div>
+        </fieldset>
+
+        <div class="flex gap-4">
+            <button type="submit"
+                class="text-white bg-red-600 box-border border border-transparent hover:bg-red-700 focus:ring-4 focus:ring-red-300 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none w-full">Confirmar
+                Eliminar</button>
+            <a href="/cursos"
+                class="inline-flex justify-center items-center w-full text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

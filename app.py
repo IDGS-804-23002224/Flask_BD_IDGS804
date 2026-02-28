@@ -5,6 +5,7 @@ from config import DevelopementConfig
 from flask import g
 from flask_migrate import Migrate
 from maestros.routes import maestros
+from cursos.routes import cursos
 import forms
 
 from models import db
@@ -13,6 +14,7 @@ from models import Alumnos
 app = Flask(__name__)
 app.config.from_object(DevelopementConfig)
 app.register_blueprint(maestros)
+app.register_blueprint(cursos)
 db.init_app(app)
 migrate = Migrate(app, db) # Migración a DB
 csrf=CSRFProtect()
