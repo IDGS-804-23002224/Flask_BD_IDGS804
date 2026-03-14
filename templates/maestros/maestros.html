@@ -2,89 +2,50 @@
 {% block container %}
 {% import "_macros.html" as macros %}
 
-<form class="max-w-md mx-auto" method="POST" novalidate>
-    {{ form.csrf_token }}
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-    <div class="relative z-0 w-full mb-5 group">
-        {{macros.camposNuevos(form.nombre, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0
-        border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer")}}
-        <!--input type="email" name="floating_email" id="floating_email" placeholder=" " required />
-        <label for="floating_email"
-            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email
-            address</label-->
-    </div>
-    <div class="relative z-0 w-full mb-5 group">
-        {{macros.camposNuevos(form.apellidos, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent
-        border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand
-        peer")}}
-        <!--input type="password" name="floating_password" id="floating_password"
-        placeholder=" " required />
-        <label for="floating_password"
-        class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Password</label-->
-    </div>
-    <div class="relative z-0 w-full mb-5 group">
-        {{macros.camposNuevos(form.especialidad, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent
-        border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand
-        peer")}}
-        <!--input type="password" name="floating_password" id="floating_password"
-        
-        placeholder=" " required />
-        <label for="floating_password"
-        class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Password</label-->
-    </div>
-    <div class="relative z-0 w-full mb-5 group">
-        {{macros.camposNuevos(form.email, class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0
-        border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer")}}
-        <!--input type="password" name="repeat_password" id="floating_repeat_password"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-            placeholder=" " required />
-        <label for="floating_repeat_password"
-            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Confirm
-            password</label-->
-    </div>
-    <!--div class="grid md:grid-cols-2 md:gap-6">
-        <div class="relative z-0 w-full mb-5 group">
-            <input type="text" name="floating_first_name" id="floating_first_name"
-                class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                placeholder=" " required />
-            <label for="floating_first_name"
-                class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">First
-                name</label>
-        </div>
-        <div class="relative z-0 w-full mb-5 group">
-            <input type="text" name="floating_last_name" id="floating_last_name"
-                class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                placeholder=" " required />
-            <label for="floating_last_name"
-                class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Last
-                name</label>
-        </div>
-    </div>
-    <div class="grid md:grid-cols-2 md:gap-6">
-        <div class="relative z-0 w-full mb-5 group">
-            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone"
-                class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                placeholder=" " required />
-            <label for="floating_phone"
-                class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Phone
-                number</label>
-        </div>
-        <div class="relative z-0 w-full mb-5 group">
-            <input type="text" name="floating_company" id="floating_company"
-                class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
-                placeholder=" " required />
-            <label for="floating_company"
-                class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Company
-                (Ex. Google)</label>
-        </div>
-    </div-->
-    <button type="submit"
-        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Submit</button>
-    <a href="/maestros"
-        class="inline-flex items-center text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-        Cancelar
-    </a>
-</form>
+<div class="max-w-2xl mx-auto mt-10 bg-white p-8 rounded-xl shadow-md border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Registrar Maestro</h2>
 
+    <form method="POST" novalidate>
+        {{ form.csrf_token }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="relative z-0 w-full group">
+                <label class="block mb-2 text-sm font-medium text-gray-700">Nombre(s)</label>
+                {{macros.camposNuevos(form.nombre, class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50
+                rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 peer")}}
+            </div>
+
+            <div class="relative z-0 w-full group">
+                <label class="block mb-2 text-sm font-medium text-gray-700">Apellidos</label>
+                {{macros.camposNuevos(form.apellidos, class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50
+                rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 peer")}}
+            </div>
+        </div>
+
+        <div class="relative z-0 w-full mb-6 group">
+            <label class="block mb-2 text-sm font-medium text-gray-700">Especialidad</label>
+            {{macros.camposNuevos(form.especialidad, class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50
+            rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 peer")}}
+        </div>
+
+        <div class="relative z-0 w-full mb-8 group">
+            <label class="block mb-2 text-sm font-medium text-gray-700">Correo Electrónico</label>
+            {{macros.camposNuevos(form.email, class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50
+            rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 peer")}}
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4">
+            <button type="submit"
+                class="w-full md:w-1/2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center transition-colors">
+                Guardar Maestro
+            </button>
+            <a href="/maestros"
+                class="w-full md:w-1/2 text-gray-700 bg-gray-100 hover:bg-gray-200 border border-gray-300 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-3 text-center inline-flex justify-center items-center transition-colors">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
 
 {% endblock %}

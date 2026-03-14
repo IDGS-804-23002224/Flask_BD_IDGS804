@@ -1,54 +1,52 @@
 {% extends "layout.html" %}
 {% block container %}
-{% import "_macros.html" as macros %}
 
-<form>
-    <div class="relative bg-neutral-primary-soft max-w-xs w-full p-6 border border-default rounded-base shadow-xs">
-        <button id="dropdownButton" data-dropdown-toggle="dropdown"
-            class="absolute top-2 end-2 text-body hover:text-heading bg-neutral-primary-soft box-border border border-transparent hover:bg-neutral-tertiary focus:ring-4 focus:ring-neutral-tertiary rounded-base p-1.5 focus:outline-none"
-            type="button">
-            <span class="sr-only">Open dropdown</span>
-            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01" />
-            </svg>
-        </button>
-        <!-- Dropdown menu -->
-        <div id="dropdown"
-            class="z-10 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-36 block hidden">
-            <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownButton">
-                <li>
-                    <a href="#"
-                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md">Edit</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md">Export
-                        Data</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="inline-flex items-center w-full p-2 text-fg-danger hover:bg-neutral-tertiary-medium rounded-md">Delete</a>
-                </li>
-            </ul>
-        </div>
-        <div class="flex flex-col items-center">
-            <img class="w-12 h-12 mb-6 rounded-full" style="max-width:64px;max-height:64px;" src="/static/src/img/user.jpg" alt="Bonnie image" />
-            <h5 class="mb-0.5 text-xl font-semibold tracking-tight text-heading">Nombre: {{nombre}} {{apellidos}}</h5>
-            <span class="text-sm text-body">Correo: {{email}} </span>
-            <span class="text-sm text-body">Especialidad: {{especialidad}} </span>
-            <div class="flex mt-4 md:mt-6 gap-4">
-                <a href="/maestros"
-                    class="inline-flex items-center text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-                    Regresar
-                </a>
-                <!--button type="button" class="inline-flex self-start w-auto text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-                Message
-                </button-->
+<div class="max-w-md mx-auto mt-10 bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 relative">
+
+    <div class="flex flex-col items-center px-6 pt-10 pb-6">
+        <img class="w-24 h-24 mb-4 rounded-full shadow-sm border-4 border-gray-50" src="/static/src/img/user.jpg"
+            alt="Foto de perfil" />
+        <h2 class="text-2xl font-bold text-gray-900 mb-1">{{ maestro.nombre }} {{ maestro.apellidos }}</h2>
+
+        <span
+            class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full border border-blue-200 mt-2 mb-4">
+            Matrícula: {{ maestro.matricula }}
+        </span>
+
+        <div class="flex flex-col w-full bg-gray-50 rounded-lg p-4 gap-3 text-sm text-gray-700 border border-gray-100">
+            <div class="flex items-center gap-3 border-b border-gray-200 pb-2">
+                <svg class="w-5 h-5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 14v3m-3-6V7a3 3 0 1 1 6 0v4m-8 0h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1Z" />
+                </svg>
+                <span class="font-medium">Especialidad:</span>
+                <span>{{ maestro.especialidad }}</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 7h16M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7m-8 6h.01" />
+                </svg>
+                <span class="font-medium">Correo:</span>
+                <span>{{ maestro.email }}</span>
             </div>
         </div>
     </div>
 
-</form>
+    <div class="flex justify-center gap-3 px-6 py-4 bg-white border-t border-gray-100">
+        <a href="/maestros"
+            class="w-full text-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:ring-gray-100 transition-colors">
+            Regresar
+        </a>
+        <a href="/maestros/modificar?matricula={{ maestro.matricula }}"
+            class="w-full text-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors">
+            Modificar Perfil
+        </a>
+    </div>
+
+</div>
 
 {% endblock %}

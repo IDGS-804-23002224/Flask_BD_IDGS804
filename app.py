@@ -6,6 +6,9 @@ from flask import g
 from flask_migrate import Migrate
 from maestros.routes import maestros
 from cursos.routes import cursos
+from alumnos.routes import alumnos
+from inscripciones.routes import inscripciones
+
 import forms
 
 from models import db
@@ -13,20 +16,24 @@ from models import Alumnos
 
 app = Flask(__name__)
 app.config.from_object(DevelopementConfig)
+
+app.register_blueprint(alumnos)
 app.register_blueprint(maestros)
 app.register_blueprint(cursos)
+app.register_blueprint(inscripciones)
+
 db.init_app(app)
+
 migrate = Migrate(app, db) # Migración a DB
 csrf=CSRFProtect()
 
 @app.route("/")
 @app.route("/index")
 def index():
-	create_form = forms.UserForm(request.form)
-	#tem = Alumnos.query('select * from alumnos')
-	alumnos = Alumnos.query.all()
-	return render_template("index.html", form=create_form, alumno=alumnos)
+	
+	return render_template("index.html")
 
+"""
 @app.route("/alumnos", methods=['GET', 'POST'])
 def alumno():
 	create_form = forms.UserForm(request.form)
@@ -114,6 +121,7 @@ def detalles():
 		email = alumn1.email
 		
 	return render_template("detalles.html", id=id, nombre=nombre, apellidos=apellidos, telefono=telefono, email=email)
+"""
 
 @app.errorhandler(404)
 def page_not_found(e):

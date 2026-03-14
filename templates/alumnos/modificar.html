@@ -3,48 +3,48 @@
 {% import "_macros.html" as macros %}
 
 <div class="max-w-2xl mx-auto mt-10 bg-white p-8 rounded-xl shadow-md border border-gray-200">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Modificar Maestro</h2>
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Modificar Alumno</h2>
 
     <form method="POST" novalidate>
         {{ form.csrf_token }}
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
         <div class="hidden">
-            {{macros.camposNuevos(form.matricula)}}
+            {{macros.camposNuevos(form.id)}}
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div class="relative z-0 w-full group">
                 <label class="block mb-2 text-sm font-medium text-gray-700">Nombre(s)</label>
                 {{macros.camposNuevos(form.nombre, class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50
-                rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 peer")}}
+                rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 peer")}}
             </div>
 
             <div class="relative z-0 w-full group">
                 <label class="block mb-2 text-sm font-medium text-gray-700">Apellidos</label>
                 {{macros.camposNuevos(form.apellidos, class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50
-                rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 peer")}}
+                rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 peer")}}
             </div>
         </div>
 
         <div class="relative z-0 w-full mb-6 group">
-            <label class="block mb-2 text-sm font-medium text-gray-700">Especialidad</label>
-            {{macros.camposNuevos(form.especialidad, class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50
-            rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 peer")}}
+            <label class="block mb-2 text-sm font-medium text-gray-700">Teléfono</label>
+            {{macros.camposNuevos(form.telefono, class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50
+            rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 peer")}}
         </div>
 
         <div class="relative z-0 w-full mb-8 group">
             <label class="block mb-2 text-sm font-medium text-gray-700">Correo Electrónico</label>
             {{macros.camposNuevos(form.email, class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50
-            rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 peer")}}
+            rounded-md border border-gray-300 focus:ring-green-500 focus:border-green-500 peer")}}
         </div>
 
         <div class="flex flex-col md:flex-row gap-4">
             <button type="submit"
-                class="w-full md:w-1/2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center transition-colors">
+                class="w-full md:w-1/2 text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-3 text-center transition-colors">
                 Guardar Cambios
             </button>
-            <a href="/maestros"
+            <a href="/alumnos"
                 class="w-full md:w-1/2 text-gray-700 bg-gray-100 hover:bg-gray-200 border border-gray-300 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-3 text-center inline-flex justify-center items-center transition-colors">
                 Cancelar
             </a>

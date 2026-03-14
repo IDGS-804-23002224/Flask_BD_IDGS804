@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block container %}
+<div class="max-w-4xl mx-auto mt-10">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Consultar Cursos por Alumno</h2>
+
+    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 mb-8">
+        <form method="POST" class="flex flex-col md:flex-row gap-4 items-end">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+            <div class="w-full md:w-3/4 relative z-0 group">
+                <label class="block mb-2 text-sm font-medium text-gray-700">Selecciona o escribe el nombre del
+                    Alumno:</label>
+                <input list="lista_alumnos" name="alumno_busqueda"
+                    class="block py-2.5 px-3 w-full text-sm text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 peer"
+                    placeholder="Escribe para buscar..." autocomplete="off" required>
+                <datalist id="lista_alumnos">
+                    {% for a in alumnos %}
+                    <option value="{{ a.id }} - {{ a.nombre }} {{ a.apellidos }}"></option>
+                    {% endfor %}
+                </datalist>
+            </div>
+            <div class="w-full md:w-1/4">
+                <button type="submit"
+                    class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors">
+                    Buscar Cursos
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {% if alumno %}
+    <h4 class="text-lg font-semibold text-green-600 mb-4">Cursos en los que está inscrito: {{ alumno.nombre }} {{
+        alumno.apellidos }}</h4>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">ID Curso</th>
+                    <th scope="col" class="px-6 py-3">Nombre del Curso</th>
+                    <th scope="col" class="px-6 py-3">Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in cursos %}
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ curso.id }}</th>
+                    <td class="px-6 py-4">{{ curso.nombre }}</td>
+                    <td class="px-6 py-4">{{ curso.descripcion }}</td>
+                </tr>
+                {% else %}
+                <tr class="bg-white border-b">
+                    <td colspan="3" class="px-6 py-4 text-center text-gray-500">Este alumno no tiene inscripciones
+                        activas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

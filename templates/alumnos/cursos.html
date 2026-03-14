@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="max-w-5xl mx-auto py-10 px-4">
+    
+    <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800">Kardex de Materias</h2>
+            <p class="text-gray-600">Alumno: <span class="font-semibold text-blue-600">{{ alumno.nombre }} {{ alumno.apellidos }}</span></p>
+        </div>
+        <a href="/alumnos/detalles?id={{ alumno.id }}" class="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors border border-gray-300 font-medium text-sm w-max">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Volver al Perfil
+        </a>
+    </div>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-200 bg-white">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-white uppercase bg-gray-800 border-b border-gray-900">
+                <tr>
+                    <th scope="col" class="px-6 py-4 font-semibold tracking-wider">Materia</th>
+                    <th scope="col" class="px-6 py-4 font-semibold tracking-wider">Descripción</th>
+                    <th scope="col" class="px-6 py-4 font-semibold tracking-wider">Profesor Titular</th>
+                    <th scope="col" class="px-6 py-4 font-semibold tracking-wider text-center">Ir al Curso</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in alumno.cursos %}
+                <tr class="bg-white border-b hover:bg-gray-50 transition-colors">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-md border border-blue-200">
+                            {{ curso.nombre }}
+                        </span>
+                    </th>
+                    <td class="px-6 py-4 text-gray-600">{{ curso.descripcion }}</td>
+                    <td class="px-6 py-4 text-gray-700">{{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}</td>
+                    <td class="px-6 py-4 text-center">
+                        <a href="/cursos/detalles?id={{ curso.id }}" class="text-blue-600 hover:text-blue-800 font-medium hover:underline inline-flex items-center gap-1">
+                            Ver detalles
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="px-6 py-10 text-center text-gray-500">
+                        <svg class="mx-auto h-12 w-12 text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        <p class="text-lg font-medium text-gray-900">Sin materias registradas</p>
+                        <p class="text-sm">El alumno aún no ha sido inscrito en ningún curso.</p>
+                        <a href="/inscripciones/agregar" class="mt-4 inline-block text-blue-600 hover:underline font-medium">Inscribir ahora</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
